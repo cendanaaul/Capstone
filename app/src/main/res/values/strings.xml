@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BloomMate</string>
+    <string name="fresh_flower">Hmmm, Fresh Flower</string>
+    <string name="fresh_flower2">Hmmm, Beautiful Flower</string>
+    <string name="fresh_flower3">Hmmm, Memorable Flower</string>
+    <string name="sub_fresh_flower">Welcome to the best flower e-commerce app!</string>
+    <string name="sub_fresh_flower2">Discover the natural beauty in each petal and create memorable moments.</string>
+    <string name="sub_fresh_flower3">Get started now and bring beauty into your life!</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="start">Get Started</string>
+</resources>
