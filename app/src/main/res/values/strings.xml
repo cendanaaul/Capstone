@@ -6,7 +6,7 @@
     <string name="sub_fresh_flower">Welcome to the best flower e-commerce app!</string>
     <string name="sub_fresh_flower2">Discover the natural beauty in each petal and create memorable moments.</string>
     <string name="sub_fresh_flower3">Get started now and bring beauty into your life!</string>
-    <string name="skip">Skip</string>
-    <string name="next">Next</string>
     <string name="start">Get Started</string>
+    <string name="welcome">Welcome,</string>
+    <string name="login_here">Login here</string>
 </resources>
