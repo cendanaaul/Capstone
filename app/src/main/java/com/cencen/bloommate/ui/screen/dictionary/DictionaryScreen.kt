@@ -11,6 +11,7 @@ import com.cencen.bloommate.ui.theme.BloomMateTheme
 
 @Composable
 fun DictionaryScreen() {
+
     Surface(
         color = Color(0xFFF5F5F),
         modifier = Modifier.fillMaxSize()
