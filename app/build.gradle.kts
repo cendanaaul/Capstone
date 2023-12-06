@@ -71,4 +71,9 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:0.12.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation ("androidx.navigation:navigation-compose:2.6.0")
+    androidTestImplementation ("androidx.navigation:navigation-testing:2.6.0")
+
 }

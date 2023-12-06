@@ -10,4 +10,8 @@
     <string name="welcome">Welcome,</string>
     <string name="required_price">Rp %d</string>
     <string name="search_here">Search here</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="dictionary">Dictionary</string>
+    <string name="profile">Profile</string>
 </resources>

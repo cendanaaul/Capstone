@@ -1,49 +1,108 @@
 package com.cencen.bloommate
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.cencen.bloommate.data.SplashScreenData
-import com.cencen.bloommate.ui.theme.ButtonCardShape
-import com.cencen.bloommate.ui.theme.Montserrat
-import com.cencen.bloommate.ui.theme.Poppins
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.cencen.bloommate.ui.navigation.ItemNavigation
+import com.cencen.bloommate.ui.navigation.Screen
+import com.cencen.bloommate.ui.screen.dictionary.DictionaryScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
 
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun BloomMateApp() {
+fun BloomMateApp(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController = rememberNavController(),
+) {
+    val navBackStack by navHostController.currentBackStackEntryAsState()
+    val currentRoutes = navBackStack?.destination?.route
 
+    Scaffold (
+        bottomBar = {
+            if (currentRoutes != Screen.DetailDictionary.routes) {
+                BottomBar(navHostController)
+            }
+        },
+        modifier = modifier
+    ) {innerPadding ->
+        NavHost(navController = navHostController,
+            startDestination = Screen.Dictionary.routes,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(Screen.Dictionary.routes) {
+                DictionaryScreen()
+                //tambahkan navToDetail
+            }
+            //tambah composable lainya
+            //besok lagi ya gue capek
+        }
+    }
+}
+
+@Composable
+fun BottomBar(
+    navHostController: NavHostController,
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(
+        modifier = modifier
+    ) {
+        val navBackStack by navHostController.currentBackStackEntryAsState()
+        val currentRoutes = navBackStack?.destination?.route
+        val navItems = listOf(
+            ItemNavigation(
+                title = stringResource(id = R.string.home),
+                icons = R.drawable.ic_home,
+                screen = Screen.Home
+            ),
+            ItemNavigation(
+                title = stringResource(id = R.string.cart),
+                icons = R.drawable.ic_cart,
+                screen = Screen.Cart
+            ),
+            ItemNavigation(
+                title = stringResource(id = R.string.dictionary),
+                icons = R.drawable.ic_book,
+                screen = Screen.Dictionary
+            ),
+            ItemNavigation(
+                title = stringResource(id = R.string.profile),
+                icons = R.drawable.ic_profile,
+                screen = Screen.Profile
+            ),
+        )
+        navItems.map { items ->
+            NavigationBarItem(
+                selected = currentRoutes == items.screen.routes,
+                onClick = {
+                          navHostController.navigate(items.screen.routes){
+                              popUpTo(navHostController.graph.findStartDestination().id) {
+                                  saveState = true
+                              }
+                              restoreState = true
+                              launchSingleTop = true
+                          }
+                },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = items.icons),
+                        contentDescription = items.title )
+                })
+        }
+    }
 }
