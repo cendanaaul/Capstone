@@ -8,5 +8,5 @@
     <string name="sub_fresh_flower3">Get started now and bring beauty into your life!</string>
     <string name="start">Get Started</string>
     <string name="welcome">Welcome,</string>
-    <string name="login_here">Login here</string>
+    <string name="required_price">Rp %d</string>
 </resources>
