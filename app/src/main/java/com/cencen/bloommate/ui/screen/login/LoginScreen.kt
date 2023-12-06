@@ -1,4 +1,4 @@
-package com.cencen.bloommate.ui.login
+package com.cencen.bloommate.ui.screen.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

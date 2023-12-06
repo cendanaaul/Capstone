@@ -1,4 +1,4 @@
-package com.cencen.bloommate.ui.dictionary
+package com.cencen.bloommate.ui.screen.dictionary
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
